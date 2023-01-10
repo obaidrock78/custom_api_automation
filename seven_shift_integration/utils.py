@@ -46,6 +46,68 @@ def migrate_data():
     # location_response = requests.get(location_url, headers=headers, timeout=600)
     # location_data = location_response.json()
 
+  
+    final_dict=[
+        {
+            'getid':"11e9f0ee-803f-7174-9e69-aa79da50e0ab",
+            'id': "308509",
+            'sales': '0'
+        }
+        ,{
+            'getid':"11e9813a-6c25-22a4-9923-722bc9e43bfa",
+            'id': "308503",
+            'sales': '0'
+        },
+        {
+            'getid':"11e9813b-b108-e7c7-8042-f689a59258f9",
+            'id': "308505",
+            'sales': '0'
+        },
+        {
+            'getid':"11e9813c-d518-505b-8042-f689a59258f9",
+            'id': "308504",
+            'sales': '0'
+        },
+        {   
+            'getid':"11e9813a-7146-604f-9923-722bc9e43bfa",
+            'id': "308507",
+            'sales': '0'
+        },
+        {
+            'getid':"11e9813a-6314-765c-9923-722bc9e43bfa",
+            'id': "308502",
+            'sales': '0'
+        },
+        {
+            'getid':"11e96c05-a13e-2b76-be63-863527f80061",
+            'id': "308508",
+            'sales': '0'
+        },
+        {
+            'getid':"11e9813b-cfd9-3f27-8042-f689a59258f9",
+            'id': "308506",
+            'sales': '0'
+        }
+
+
+    ]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     location_dict = [
         {
             'id': "308509"
