@@ -124,6 +124,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 CRONJOBS = [
-    ('0 0 * * *', 'seven_shift_integration.utils.migrate_data'),
-    # ('0 * * * *', 'booking.booking_crons.booking_three_days_reminder'),
+    ('*/1 * * * *', 'seven_shift_integration.utils.migrate_data'),
+    # ('0 0 * * *', 'seven_shift_integration.utils.migrate_data'),
 ]
