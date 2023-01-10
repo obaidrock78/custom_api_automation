@@ -96,7 +96,7 @@ def migrate_data():
                     "location_id": location_data[0]['id'],
                     "date": str(datetime.now().date()),
                     "department_id": None,
-                    "actual_sales": obj['netSales'],
+                    "actual_sales": int(obj['netSales']) / 100,
                     "labor_target": 0,
                 }
 
