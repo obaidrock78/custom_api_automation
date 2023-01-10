@@ -46,116 +46,66 @@ def migrate_data():
     # location_response = requests.get(location_url, headers=headers, timeout=600)
     # location_data = location_response.json()
 
-  
-    final_dict=[
+    final_dict = [
         {
-            'getid':"11e9f0ee-803f-7174-9e69-aa79da50e0ab",
+            'getid': "11e9f0ee-803f-7174-9e69-aa79da50e0ab",
             'id': "308509",
             'sales': '0'
         }
-        ,{
-            'getid':"11e9813a-6c25-22a4-9923-722bc9e43bfa",
+        , {
+            'getid': "11e9813a-6c25-22a4-9923-722bc9e43bfa",
             'id': "308503",
             'sales': '0'
         },
         {
-            'getid':"11e9813b-b108-e7c7-8042-f689a59258f9",
+            'getid': "11e9813b-b108-e7c7-8042-f689a59258f9",
             'id': "308505",
             'sales': '0'
         },
         {
-            'getid':"11e9813c-d518-505b-8042-f689a59258f9",
+            'getid': "11e9813c-d518-505b-8042-f689a59258f9",
             'id': "308504",
             'sales': '0'
         },
-        {   
-            'getid':"11e9813a-7146-604f-9923-722bc9e43bfa",
+        {
+            'getid': "11e9813a-7146-604f-9923-722bc9e43bfa",
             'id': "308507",
             'sales': '0'
         },
         {
-            'getid':"11e9813a-6314-765c-9923-722bc9e43bfa",
+            'getid': "11e9813a-6314-765c-9923-722bc9e43bfa",
             'id': "308502",
             'sales': '0'
         },
         {
-            'getid':"11e96c05-a13e-2b76-be63-863527f80061",
+            'getid': "11e96c05-a13e-2b76-be63-863527f80061",
             'id': "308508",
             'sales': '0'
         },
         {
-            'getid':"11e9813b-cfd9-3f27-8042-f689a59258f9",
+            'getid': "11e9813b-cfd9-3f27-8042-f689a59258f9",
             'id': "308506",
             'sales': '0'
         }
 
-
     ]
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    location_dict = [
-        {
-            'id': "308509"
-        },
-        {
-            'id': "308503"
-        },
-        {
-            'id': "308505"
-        },
-        {
-            'id': "308504"
-        },
-        {
-            'id': "308507"
-        },
-        {
-            'id': "308502"
-        },
-        {
-            'id': "308508"
-        },
-        {
-            'id': "308506"
-        },
+    for obj in sales_data:
+        location_data = [x for x in final_dict if x['getid'] == obj['id']]
+        if location_data:
+            body = {
+                    "location_id": location_data[0]['id'],
+                    "date": str(datetime.now().date()),
+                    "department_id": None,
+                    "actual_sales": obj['netSales'],
+                    "labor_target": 0,
+                }
 
-    ]
-    sales_data_count = len(sales_data)
-    location_data_count = len(location_dict)
+            headers = {
+                    "Authorization": "Bearer 63306662353062352d383637662d346639382d613861612d393235393664376131666136"
+                }
 
-    loop_count = sales_data_count if sales_data_count < location_data_count else location_data_count
-    from_date = datetime.strftime(from_date, '%Y-%m-%d %H:%M:%S')
-
-    for i in range(loop_count):
-        body = {
-            "location_id": location_dict[i]['id'],
-            "date": str(datetime.now().date()),
-            "department_id": None,
-            "actual_sales": sales_data[i]['netSales'],
-            "labor_target": 0,
-        }
-
-        headers = {
-            "Authorization": "Bearer 63306662353062352d383637662d346639382d613861612d393235393664376131666136"
-        }
-
-        url = "https://app.7shifts.com/api/v1/daily_reports"
-        response = requests.post(url, json=body, headers=headers, timeout=600)
-        print(response.json())
-        cron_record.status = "completed"
-        cron_record.save()
+            url = "https://app.7shifts.com/api/v1/daily_reports"
+            response = requests.post(url, json=body, headers=headers, timeout=600)
+            print(response.json())
+    cron_record.status = "completed"
+    cron_record.save()
