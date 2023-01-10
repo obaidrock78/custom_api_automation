@@ -31,7 +31,7 @@ def migrate_data():
 
     from_date, end_date = get_start_and_end()
     new_from_date = datetime.strftime(from_date, '%Y-%m-%dT%H:%M:%S') + "Z"
-    new_end_date = datetime.strftime(end_date, '%Y-%m-%dT%H:%M:%S') + "Z"
+    new_end_date = datetime.strftime(end_date, '%Y-%m-%dT') + "23:59:59Z"
     sales_urls = f"https://api.posveloce.com/sales/locations?from={new_from_date}&to={new_end_date}"
     headers = {
         "Authorization": f"Bearer {token}"
@@ -89,6 +89,7 @@ def migrate_data():
         }
 
     ]
+    data_list = []
     for obj in sales_data:
         location_data = [x for x in final_dict if x['getid'] == obj['id']]
         if location_data:
@@ -99,7 +100,7 @@ def migrate_data():
                     "actual_sales": int(obj['netSales']) * 100,
                     "labor_target": 0,
                 }
-
+            data_list.append(body)
             headers = {
                     "Authorization": "Bearer 63306662353062352d383637662d346639382d613861612d393235393664376131666136"
                 }
