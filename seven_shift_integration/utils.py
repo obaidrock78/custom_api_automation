@@ -89,7 +89,6 @@ def migrate_data():
         }
 
     ]
-    data_list = []
     for obj in sales_data:
         location_data = [x for x in final_dict if x['getid'] == obj['id']]
         if location_data:
@@ -100,7 +99,6 @@ def migrate_data():
                     "actual_sales": int(obj['netSales']) * 100,
                     "labor_target": 0,
                 }
-            data_list.append(body)
             headers = {
                     "Authorization": "Bearer 63306662353062352d383637662d346639382d613861612d393235393664376131666136"
                 }
