@@ -7,7 +7,7 @@ from seven_shift_integration.models import CronJobRecord
 
 
 def get_start_and_end():
-    tz = pytz.timezone('UTC')
+    tz = pytz.timezone('America/Toronto')
     today = datetime.now(tz=tz)
     start = today.replace(hour=0, minute=0, second=0, microsecond=0)
     end = start + timedelta(1)
