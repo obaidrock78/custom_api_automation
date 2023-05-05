@@ -24,7 +24,7 @@ def migrate_data():
     login_url = "https://api.posveloce.com/users/authenticate"
     body = {
         "email": "api@mandys.ca",
-        "password": "Api12345"
+        "password": "API@MANDYS1234"
     }
     response = requests.post(login_url, json=body)
     token = response.json()['token']
